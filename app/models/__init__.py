@@ -1,1 +1,1 @@
-from movies import Movies
+from .movies import Movies
