@@ -1,13 +1,13 @@
 from flask import Flask
-from app.routes import upload_bp, movies_bp
+from routes import upload_bp, movies_bp
 from mongoengine import connect
 
 def create_app():
     """Create and configure the Flask application."""
     app = Flask(__name__)
-
-    # Initialize MongoEngine
-    connect('movies', alias="movies")
+    BYTE = (2 ** 10)
+    app.config['MAX_CONTENT_LENGTH'] = None
+    app.config['MAX_FORM_MEMORY_SIZE'] = 1.1 * BYTE ** 3    # Initialize MongoEngine
 
 
     # Register blueprints (API routes)
