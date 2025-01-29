@@ -72,8 +72,8 @@ def upload_csv():
                 runtime_in_minutes=row['runtime'],
                 movie_status=row['status'].lower().replace(" ", "_") if not isna(row['status']) else "rumored",
                 movie_title=row['title'].lower(),
-                vote_average=float(row["vote_average"]) if isinstance(row["vote_average"], (int, float)) else 0,
-                vote_count=float(row["vote_count"]) if isinstance(row["vote_count"], (int, float)) else 0,
+                ratings=float(row["vote_average"]) if isinstance(row["vote_average"], (int, float)) else 0,
+                reviews=float(row["vote_count"]) if isinstance(row["vote_count"], (int, float)) else 0,
                 production_company_id=row['production_company_id'],
                 genre_id=row['genre_id'],
                 languages=json.loads(language_string)
