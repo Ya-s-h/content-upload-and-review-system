@@ -16,7 +16,7 @@ class Movies(Document):
     revenue = DecimalField(default=0, precision=2, min_value=0)
     runtime_in_minutes = IntField(required=True, min_value=0)
     movie_status = StringField(required=True, choices= ["released", "in_production", "canceled", "rumored", "post_production", "planned"])
-    movie_title = StringField(required=True)
+    movie_title = StringField(required=True, unique=True)
     vote_average = FloatField(default=0, min_value=0, max_value=10)
     vote_count = IntField(default=0, min_value=0)
     production_company_id = IntField(required=True)

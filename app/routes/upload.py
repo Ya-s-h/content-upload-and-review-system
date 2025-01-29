@@ -41,6 +41,7 @@ def upload_csv():
     file_stream = io.BytesIO(file.read())
     df = read_csv(file_stream)
     df.dropna(inplace=True)
+    df.drop_duplicates(subset=['title'])
     # Prepare movies to insert
     movies_to_insert = []
     
@@ -87,6 +88,7 @@ def upload_csv():
     if movies_to_insert:
         for movie in movies_to_insert:
             movie.validate()  # Validate each movie
+        Movies.objects.delete()
         Movies.objects.insert(movies_to_insert)  # Bulk insert into MongoDB
 
     return jsonify({"message": "CSV uploaded successfully", "movies_added": len(movies_to_insert)}), 201
